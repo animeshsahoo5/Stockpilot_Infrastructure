@@ -33,3 +33,45 @@ variable "private_subnet_2_cidr" {
   description = "CIDR block for Private Subnet 2"
   type        = string
 }
+
+variable "availability_zone_1" {
+  description = "Availability Zone for Public and Private Subnet 1"
+  type        = string
+}
+
+variable "availability_zone_2" {
+  description = "Availability Zone for Public and Private Subnet 2"
+  type        = string
+}
+
+variable "db_name" {
+  description = "Initial PostgreSQL database name"
+  type        = string
+}
+
+variable "db_username" {
+  description = "Master username for PostgreSQL"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Master password for PostgreSQL"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_instance_class" {
+  description = "RDS instance type"
+  type        = string
+}
+
+variable "allocated_storage" {
+  description = "Allocated storage for the RDS instance (GB)"
+  type        = number
+}
+
+variable "engine_version" {
+  description = "PostgreSQL engine version"
+  type        = string
+}
+
