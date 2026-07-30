@@ -70,3 +70,32 @@ module "cloudwatch" {
 
   common_tags = local.common_tags
 }
+
+module "ecs" {
+
+  source = "./modules/ecs"
+
+  name_prefix = local.name_prefix
+
+  common_tags = local.common_tags
+
+  private_subnet_ids = [
+    aws_subnet.private_subnet_1.id,
+    aws_subnet.private_subnet_2.id
+  ]
+
+  ecs_security_group_id = module.security.ecs_security_group_id
+
+  target_group_arn = module.alb.target_group_arn
+
+  execution_role_arn = module.iam.ecs_execution_role_arn
+
+  task_role_arn = module.iam.ecs_task_role_arn
+
+  log_group_name = module.cloudwatch.log_group_name
+
+  ecr_repository_url = module.ecr.repository_url
+
+  container_port = 4000
+
+}
