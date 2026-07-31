@@ -56,11 +56,15 @@ module "ecr" {
 
 }
 
+
 module "iam" {
-  source      = "./modules/iam"
-  name_prefix = local.name_prefix
-  common_tags = local.common_tags
+  source = "./modules/iam"
+
+  name_prefix  = local.name_prefix
+  common_tags  = local.common_tags
+  s3_bucket_arn = module.s3.bucket_arn
 }
+
 
 module "cloudwatch" {
 
@@ -99,3 +103,28 @@ module "ecs" {
   container_port = 4000
 
 }
+
+module "autoscaling" {
+
+  source = "./modules/autoscaling"
+
+  ecs_cluster_name = module.ecs.cluster_name
+
+  ecs_service_name = module.ecs.service_name
+
+  min_capacity = 1
+
+  max_capacity = 3
+
+  cpu_target_value = 70
+
+}
+
+module "s3" {
+  source = "./modules/s3"
+
+  name_prefix = local.name_prefix
+  common_tags = local.common_tags
+}
+
+
