@@ -12,3 +12,8 @@ output "rds_security_group_id" {
   description = "Security Group ID for RDS"
   value       = aws_security_group.rds_sg.id
 }
+
+output "jenkins_security_group_id" {
+  description = "Security Group ID for Jenkins Server"
+  value       = aws_security_group.jenkins_sg.id
+}

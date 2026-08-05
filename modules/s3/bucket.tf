@@ -1,10 +1,10 @@
 resource "aws_s3_bucket" "main" {
-  bucket = "${var.name_prefix}-storage"
+  bucket = "stockpilot-dev-storage-animesh-2026"
 
   tags = merge(
     var.common_tags,
     {
-      Name = "${var.name_prefix}-storage"
+      Name = "stockpilot-dev-storage-animesh-2026"
     }
   )
 }

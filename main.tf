@@ -127,4 +127,22 @@ module "s3" {
   common_tags = local.common_tags
 }
 
+module "jenkins" {
+
+  source = "./modules/jenkins"
+
+  name_prefix = local.name_prefix
+
+  common_tags = local.common_tags
+
+  public_subnet_id = aws_subnet.public_1.id
+
+  jenkins_security_group_id = module.security.jenkins_security_group_id
+
+  key_name = var.key_name
+
+  iam_instance_profile = module.iam.jenkins_instance_profile_name
+  
+}
+
 

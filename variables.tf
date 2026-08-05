@@ -75,3 +75,9 @@ variable "engine_version" {
   type        = string
 }
 
+variable "key_name" {
+  description = "EC2 Key Pair Name"
+
+  type = string
+}
+
